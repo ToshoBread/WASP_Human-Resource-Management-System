@@ -1,20 +1,13 @@
-# Fisch HRMS :fish:
+# W.A.S.P. H.R.M.S.
 
 A Human Resource Management System Project
-in compliance with the following courses:
+in compliance with the course:
 
-- Information Management 2
 - Object Oriented Programming
 
 ## Tech Stack
 
-### :computer: Front End
-
-[![My Skills](https://skillicons.dev/icons?i=html,css,figma)](https://skillicons.dev)
-
-### :gear: Back End
-
-[![My Skills](https://skillicons.dev/icons?i=ts,nodejs,express,prisma,mysql)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,gradle,spring,mysql,figma)](https://skillicons.dev)
 
 ## The Team:
 
@@ -23,4 +16,3 @@ in compliance with the following courses:
 [Montalban, Elijah Gabriel C.](https://github.com/SennwA)<br>
 [Montealegre, Darryl Julian T.](https://github.com/ChaseJayyy)<br>
 [Red, Alen Gem D.](https://github.com/nelader)<br>
-[Seit, Nathaniel P.](https://github.com/politebanana1)<br>
