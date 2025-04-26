@@ -7,7 +7,7 @@ in compliance with the course:
 
 ## Tech Stack
 
-[![My Skills](https://skillicons.dev/icons?i=java,gradle,spring,mysql,figma)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,maven,mysql,figma)](https://skillicons.dev)
 
 ## The Team:
 
