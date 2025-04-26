@@ -1,0 +1,9 @@
+wasp\app\App.class
+wasp\util\Encryptor.class
+wasp\database\DBAction.class
+wasp\controllers\DashboardController.class
+wasp\util\Utils.class
+wasp\controllers\LoginController.class
+wasp\database\DatabaseConnection.class
+wasp\controllers\RegisterController.class
+wasp\app\User.class

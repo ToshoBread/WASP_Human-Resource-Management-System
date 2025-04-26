@@ -53,6 +53,8 @@ public class RegisterController {
             int age = Integer.parseInt(ageField.getText().trim());
             String sex = "";
 
+            String emailRegex = "^[a-z0-9_+&*-]+(?:\\.[a-z0-9_+&*-]+)*@(?:[a-z0-9_+&*-]+\\.)*[a-z]{2,7}$";
+
             if (rMale.isSelected()) {
                 sex = "M";
             } else if (rFemale.isSelected()) {
@@ -67,6 +69,12 @@ public class RegisterController {
 
             if (Utils.containsNumeric(lastName) || Utils.containsNumeric(firstName)) {
                 registerMessage.setText("Name must not contain numerical characters.");
+                registerMessage.setVisible(true);
+                return;
+            }
+
+            if (!email.matches(emailRegex)) {
+                registerMessage.setText("Invalid Email.");
                 registerMessage.setVisible(true);
                 return;
             }
