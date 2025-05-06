@@ -37,7 +37,7 @@
                   <Insets bottom="20.0" left="40.0" top="20.0" />
                </VBox.margin>
             </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="BOTTOM_LEFT" prefHeight="136.0" prefWidth="978.0">
                <children>
                   <Label style="-fx-font-size: 15; -fx-font-weight: bold;" text="Employee Table">
                      <HBox.margin>
@@ -53,12 +53,15 @@
       </VBox>
    </center>
    <bottom>
-      <TableView fx:id="employeetable" prefHeight="365.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="employeeTable" prefHeight="366.0" prefWidth="850.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn fx:id="name" prefWidth="250.0" text="Name" />
-            <TableColumn fx:id="position" prefWidth="250.0" text="Position" />
-            <TableColumn fx:id="department" prefWidth="250.0" text="Department" />
-            <TableColumn fx:id="datehired" prefWidth="250.0" text="Date Hired" />
+            <TableColumn fx:id="idColumn" prefWidth="48.00000077486038" text="ID" />
+            <TableColumn fx:id="lastnameColumn" prefWidth="134.3999900817871" text="Last Name" />
+            <TableColumn fx:id="firstnameColumn" prefWidth="146.40003967285156" text="First Name" />
+            <TableColumn fx:id="positionColumn" prefWidth="132.0" text="Position" />
+            <TableColumn fx:id="emailColumn" minWidth="0.0" prefWidth="240.0" text="Email" />
+            <TableColumn fx:id="sexColumn" prefWidth="61.59991455078125" text="Sex" />
+            <TableColumn fx:id="birthdateColumn" prefWidth="208.800048828125" text="Birthdate" />
          </columns>
       </TableView>
    </bottom>
