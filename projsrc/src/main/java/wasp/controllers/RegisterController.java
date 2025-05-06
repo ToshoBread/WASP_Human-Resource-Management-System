@@ -1,9 +1,9 @@
 package wasp.controllers;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
-import wasp.database.DBAction;
-import wasp.util.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,22 +11,33 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import wasp.DAO.EmployeeDAO;
+import wasp.DTO.Employee;
+import wasp.services.EmployeeService;
+import wasp.util.Encryptor;
+import wasp.util.Utils;
 
 public class RegisterController {
 
     @FXML
-    private TextField usernameField, lastNameField, firstNameField, emailField, ageField;
+    private TextField usernameField, lastNameField, firstNameField, emailField;
 
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordField, confirmPasswordField;
 
     @FXML
-    private RadioButton rMale, rFemale;
+    DatePicker birthdateField;
+
+    @FXML
+    private RadioButton radioMale, radioFemale, radioEmployee, radioSupervisor, radioHR, radioIT;
 
     @FXML
     private Button returnButton, registerButton;
@@ -38,72 +49,117 @@ public class RegisterController {
     private Scene scene;
     private Parent root;
 
-    private DBAction db = new DBAction();
+    private Encryptor enc = new Encryptor();
+    private Utils util = new Utils();
+    private EmployeeService empService = new EmployeeService();
+    private EmployeeDAO empDAO = new EmployeeDAO();
 
     public void registerUser(ActionEvent event) throws IOException {
-        try {
-            int minAge = 18;
-            int maxAge = 99;
+        Employee employee = new Employee();
 
+        try {
             String username = usernameField.getText().trim().toLowerCase();
-            String lastName = Utils.toTitleCase(lastNameField.getText().trim());
-            String firstName = Utils.toTitleCase(firstNameField.getText().trim());
+            String lastName = util.toTitleCase(lastNameField.getText().trim());
+            String firstName = util.toTitleCase(firstNameField.getText().trim());
             String email = emailField.getText().trim().toLowerCase();
             String password = passwordField.getText().trim();
-            int age = Integer.parseInt(ageField.getText().trim());
-            String sex = "";
+            String confirmPassword = confirmPasswordField.getText().trim();
+            LocalDate birthdate = birthdateField.getValue();
+            int sexID = 0;
+            int roleID = 0;
 
             String emailRegex = "^[a-z0-9_+&*-]+(?:\\.[a-z0-9_+&*-]+)*@(?:[a-z0-9_+&*-]+\\.)*[a-z]{2,7}$";
 
-            if (rMale.isSelected()) {
-                sex = "M";
-            } else if (rFemale.isSelected()) {
-                sex = "F";
+            if (radioMale.isSelected()) {
+                sexID = 1;
+            } else if (radioFemale.isSelected()) {
+                sexID = 2;
             }
 
-            if (db.usernameExists(username)) {
-                registerMessage.setText("Username is taken.");
-                registerMessage.setVisible(true);
+            if (radioEmployee.isSelected()) {
+                roleID = 1;
+            } else if (radioSupervisor.isSelected()) {
+                roleID = 2;
+            } else if (radioHR.isSelected()) {
+                roleID = 3;
+            } else if (radioIT.isSelected()) {
+                roleID = 4;
+            }
+
+            if (username.isBlank() || lastName.isBlank() || firstName.isBlank() || email.isBlank()
+                    || password.isBlank()) {
+                showRegisterMessage("Please fill up all fields.");
                 return;
             }
 
-            if (Utils.containsNumeric(lastName) || Utils.containsNumeric(firstName)) {
-                registerMessage.setText("Name must not contain numerical characters.");
-                registerMessage.setVisible(true);
+            if (util.containsNumeric(lastName) || util.containsNumeric(firstName)) {
+                showRegisterMessage("Name must not contain numerical characters.");
+                return;
+            }
+
+            if (sexID == 0) {
+                showRegisterMessage("Please select corresponding sex.");
+                return;
+            }
+
+            if (roleID == 0) {
+                showRegisterMessage("Please select corresponding role.");
                 return;
             }
 
             if (!email.matches(emailRegex)) {
-                registerMessage.setText("Invalid Email.");
-                registerMessage.setVisible(true);
+                showRegisterMessage("Invalid Email.");
                 return;
             }
 
-            if (db.emailIsUsed(email)) {
-                registerMessage.setText("Email already in use.");
-                registerMessage.setVisible(true);
+            if (!password.equals(confirmPassword)) {
+                showRegisterMessage("Passwords do not match.");
                 return;
             }
 
-            if (minAge > age || age > maxAge) {
-                registerMessage.setText("Invalid age.");
-                registerMessage.setVisible(true);
+            if (empService.usernameExists(username)) {
+                showRegisterMessage("Username is taken.");
                 return;
             }
 
-            db.addUser(username, password, email, lastName, firstName, age, sex);
-            registerMessage.setText("User Registered Successfully.");
-            registerMessage.setVisible(true);
+            if (empService.emailIsUsed(email)) {
+                showRegisterMessage("Email already in use.");
+                return;
+            }
 
-        } catch (NumberFormatException e) {
-            System.err.println("Enter numbers only - " + e);
-            registerMessage.setText("Age must be a number!");
+            byte[] saltBytes = enc.generateSalt();
+            String hexSalt = enc.bytesToHex(saltBytes);
+            String hashedPassword = enc.encryptPass(password, saltBytes);
+
+            employee.setLastName(lastName);
+            employee.setFirstName(firstName);
+            employee.setEmail(email);
+            employee.setUsername(username);
+            employee.setPassword(hashedPassword);
+            employee.setBirthdate(Date.valueOf(birthdate));
+            employee.setSalt(hexSalt);
+            employee.setSexID(sexID);
+            employee.setRoleID(roleID);
+
+            empDAO.insert(employee);
+
+            registerMessage.setTextFill(Color.GREEN);
+            showRegisterMessage("User Registered Successfully.");
+
+        } catch (Exception e) {
+            System.err.println(e);
+            registerMessage.setText("Something went wrong.");
         }
 
     }
 
+    private void showRegisterMessage(String message) {
+        registerMessage.setText(message);
+        registerMessage.setVisible(true);
+    }
+
     public void gotoLogin(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/app.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseRole.fxml"));
         root = loader.load();
 
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

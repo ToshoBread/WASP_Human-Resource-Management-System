@@ -1,21 +1,7 @@
 package wasp.util;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
-
 public final class Utils {
-
-    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-    public static double getScreenWidth() {
-        return screenSize.getWidth();
-    }
-
-    public static double getScreenHeight() {
-        return screenSize.getHeight();
-    }
-
-    public static String toTitleCase(String input) {
+    public String toTitleCase(String input) {
         String[] words = input.split("\\s+");
         StringBuilder sb = new StringBuilder();
 
@@ -33,7 +19,7 @@ public final class Utils {
         return sb.toString().trim();
     }
 
-    public static boolean containsNumeric(String input) {
+    public boolean containsNumeric(String input) {
         return input.matches(".*[0-9].*") ? true : false;
     }
 }

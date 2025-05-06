@@ -1,9 +1,13 @@
-wasp\app\App.class
+wasp\controllers\GreeterController.class
 wasp\util\Encryptor.class
-wasp\database\DBAction.class
-wasp\controllers\DashboardController.class
+wasp\DAO\DAO.class
 wasp\util\Utils.class
+wasp\singleton\LoggedInUser.class
 wasp\controllers\LoginController.class
 wasp\database\DatabaseConnection.class
 wasp\controllers\RegisterController.class
-wasp\app\User.class
+wasp\app\App.class
+wasp\services\EmployeeService.class
+wasp\controllers\AdminLoginController.class
+wasp\DTO\Employee.class
+wasp\DAO\EmployeeDAO.class

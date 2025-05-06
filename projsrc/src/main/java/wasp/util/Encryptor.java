@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-public class Encryptor {
+public final class Encryptor {
 
     public byte[] generateSalt() {
         SecureRandom random = new SecureRandom();

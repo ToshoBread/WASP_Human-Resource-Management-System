@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wasp.controllers.AdminLoginController">
+   <top>
+      <HBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="830.0" style="-fx-background-color: #123458;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="62.0" prefWidth="386.0" style="-fx-font-size: 25; -fx-text-fill: white; -fx-font-weight: bold;" text="W.A.S.P inc.">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <Button cache="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Home" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="120.0" top="15.0" />
+               </HBox.margin>
+            </Button>
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </Rectangle>
+            <Button cache="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Supervisor" textFill="WHITE">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </Button>
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </Rectangle>
+            <Button cache="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Employee" textFill="WHITE">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </Button>
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </Rectangle>
+            <Button cache="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="IT Admin" textFill="WHITE">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <StackPane BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="250.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="400.0">
+               <effect>
+                  <DropShadow height="5.0" offsetY="1.0" radius="2.0" width="5.0">
+                     <color>
+                        <Color opacity="0.4000000059604645" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <StackPane.margin>
+                  <Insets top="30.0" />
+               </StackPane.margin>
+            </Rectangle>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" StackPane.alignment="CENTER">
+               <children>
+                  <Pane maxHeight="-Infinity" maxWidth="400.0" minHeight="20.0" minWidth="300.0" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #123458;">
+                     <children>
+                        <Label style="-fx-font-weight: bold; -fx-font-size: 20;" text="Admin" textFill="WHITE">
+                           <padding>
+                              <Insets left="165.0" top="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <TextField fx:id="userField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Username or Email" />
+                  <PasswordField fx:id="passwordField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Password" />
+                  <Button fx:id="loginButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#login" prefWidth="350.0" style="-fx-font-size: 15; -fx-background-radius: 10; -fx-font-weight: bold; -fx-background-color: #123458;" text="Login" textFill="WHITE" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
+                  <Button fx:id="gotoRegisterButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#gotoRegister" prefHeight="24.0" style="-fx-background-color: none;" text="Register here" textFill="#4430fc" />
+                  <Label text="Label" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
