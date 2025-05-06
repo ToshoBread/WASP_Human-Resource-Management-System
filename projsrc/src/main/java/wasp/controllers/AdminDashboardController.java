@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import wasp.DAO.EmployeeDAO;
@@ -33,6 +36,9 @@ public class AdminDashboardController implements Initializable {
 
     @FXML
     private Label userDashboardLabel;
+
+    @FXML
+    private TextField tableSearchField;
 
     @FXML
     private TableView<Employee> employeeTable;
@@ -89,8 +95,27 @@ public class AdminDashboardController implements Initializable {
     }
 
     private void displayTableData() throws SQLException {
-        List<Employee> employees = empDAO.getAll();
-        ObservableList<Employee> observableEmployees = FXCollections.observableArrayList(employees);
-        employeeTable.setItems(observableEmployees);
+        List<Employee> employeesList = empDAO.getAll();
+        ObservableList<Employee> employees = FXCollections.observableArrayList(employeesList);
+        FilteredList<Employee> filteredData = new FilteredList<>(employees, p -> true);
+
+        tableSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(employee -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowercaseFilter = newValue.toLowerCase();
+
+                return employee.getLastName().toLowerCase().contains(lowercaseFilter)
+                        || employee.getFirstName().toLowerCase().contains(lowercaseFilter)
+                        || employee.getEmail().toLowerCase().contains(lowercaseFilter)
+                        || String.valueOf(employee.getEmployeeID()).contains(lowercaseFilter);
+            });
+        });
+
+        SortedList<Employee> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(employeeTable.comparatorProperty());
+
+        employeeTable.setItems(sortedData);
     }
 }
