@@ -17,6 +17,8 @@ public abstract class LoginController {
 
     public abstract void login(ActionEvent event) throws IOException;
 
+    public abstract void showLoginMessage(String message);
+
     public void gotoRegister(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Registerpage.fxml"));
         root = loader.load();
@@ -26,5 +28,4 @@ public abstract class LoginController {
         stage.setScene(scene);
         stage.show();
     }
-
 }

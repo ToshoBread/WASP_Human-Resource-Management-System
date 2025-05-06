@@ -90,10 +90,14 @@
                   </Pane>
                   <TextField fx:id="userField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Username or Email" />
                   <PasswordField fx:id="passwordField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Password" />
+                  <Label fx:id="loginMessage" textFill="RED" visible="false" />
                   <Button fx:id="loginButton" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#login" prefWidth="350.0" style="-fx-font-size: 15; -fx-background-radius: 10; -fx-font-weight: bold; -fx-background-color: #123458;" text="Login" textFill="WHITE" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
-                  <Button fx:id="gotoRegisterButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#gotoRegister" prefHeight="24.0" style="-fx-background-color: none;" text="Register here" textFill="#4430fc" />
-                  <Label text="Label" />
+                  <HBox alignment="CENTER" prefHeight="22.0" prefWidth="978.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
+                        <Button fx:id="gotoRegisterButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#gotoRegister" prefHeight="24.0" style="-fx-background-color: none;" text="Register here" textFill="#4430fc" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

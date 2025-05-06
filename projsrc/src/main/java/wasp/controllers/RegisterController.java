@@ -147,7 +147,7 @@ public class RegisterController {
             showRegisterMessage("User Registered Successfully.");
 
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
             registerMessage.setText("Something went wrong.");
         }
 

@@ -12,7 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import wasp.DAO.EmployeeDAO;
+import wasp.DTO.Employee;
 import wasp.services.EmployeeService;
+import wasp.singleton.LoggedInUser;
 
 public class AdminLoginController extends LoginController {
 
@@ -30,32 +33,51 @@ public class AdminLoginController extends LoginController {
     private Parent root;
 
     private EmployeeService empService = new EmployeeService();
+    private EmployeeDAO empDAO = new EmployeeDAO();
 
     @Override
     public void login(ActionEvent event) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
-            root = loader.load();
+        LoggedInUser loggedInUser = LoggedInUser.getInstance();
 
-            // DashboardController dashboardController = loader.getController();
+        try {
             String username = userField.getText().trim().toLowerCase();
             String password = passwordField.getText().trim();
 
-            if (empService.verifyUser(username, password)) {
-                // dashboardController.displayName(db.getName(username));
+            Employee employee = empDAO.getByUsername(username);
 
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } else {
-                loginMessage.setText("Incorrect Credentials!");
-                loginMessage.setVisible(true);
+            if (username == null || password == null) {
+                showLoginMessage("Please fill up all fields.");
+                return;
             }
 
+            if (employee.getRoleID() != 3) {
+                showLoginMessage("Incorrect Privilege.");
+                return;
+            }
+
+            if (!empService.verifyUser(username, password)) {
+                showLoginMessage("Incorrect Credentials.");
+                return;
+            }
+
+            loggedInUser.setUser(employee);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Admin.fxml"));
+            root = loader.load();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         } catch (Exception e) {
-            System.err.println(e);
+            e.printStackTrace();
+            showLoginMessage("Something went wrong.");
         }
 
+    }
+
+    @Override
+    public void showLoginMessage(String message) {
+        loginMessage.setText(message);
+        loginMessage.setVisible(true);
     }
 }

@@ -44,7 +44,7 @@
                   <TextField fx:id="lastNameField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Last Name" />
                   <TextField fx:id="firstNameField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="First Name" />
                   <TextField fx:id="emailField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Email" />
-                  <DatePicker fx:id="birthdateField" prefWidth="385.0" promptText="Birth Date" />
+                  <DatePicker fx:id="birthdateField" prefWidth="385.0" promptText="Birth Date (MM/DD/YYY)" />
                   <PasswordField fx:id="passwordField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Password" />
                   <PasswordField fx:id="confirmPasswordField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="385.0" promptText="Confirm Password" />
                   <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="20.0">
