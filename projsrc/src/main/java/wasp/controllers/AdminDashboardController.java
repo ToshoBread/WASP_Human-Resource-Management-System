@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.management.relation.Role;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -27,6 +29,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import wasp.DAO.EmployeeDAO;
 import wasp.DTO.Employee;
+import wasp.DTO.Sex;
 import wasp.singleton.LoggedInUser;
 
 public class AdminDashboardController implements Initializable {
@@ -44,7 +47,13 @@ public class AdminDashboardController implements Initializable {
     private TableView<Employee> employeeTable;
 
     @FXML
-    private TableColumn<Employee, String> lastnameColumn, firstnameColumn, positionColumn, emailColumn, sexColumn;
+    private TableColumn<Employee, String> lastnameColumn, firstnameColumn, emailColumn;
+
+    @FXML
+    private TableColumn<Role, String> positionColumn;
+
+    @FXML
+    private TableColumn<Sex, String> sexColumn;
 
     @FXML
     private TableColumn<Employee, Integer> idColumn;
@@ -63,10 +72,14 @@ public class AdminDashboardController implements Initializable {
         Employee user = loggedInUser.getUser();
         userDashboardLabel.setText(String.format("Dashboard - %s %s", user.getFirstName(), user.getLastName()));
 
+        // TODO: Display other table's values with the main employee table
+
         idColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("employeeID"));
         lastnameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
         firstnameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
+        positionColumn.setCellValueFactory(new PropertyValueFactory<Role, String>("roleLabel"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("email"));
+        sexColumn.setCellValueFactory(new PropertyValueFactory<Sex, String>("sexLabel"));
         birthdateColumn.setCellValueFactory(new PropertyValueFactory<Employee, Date>("birthdate"));
 
         try {
@@ -101,7 +114,7 @@ public class AdminDashboardController implements Initializable {
 
         tableSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(employee -> {
-                if (newValue == null || newValue.isEmpty()) {
+                if (newValue.trim() == null || newValue.trim().isEmpty()) {
                     return true;
                 }
                 String lowercaseFilter = newValue.toLowerCase();
