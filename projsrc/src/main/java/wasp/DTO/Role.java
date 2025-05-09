@@ -1,6 +1,7 @@
 package wasp.DTO;
 
 public class Role {
+
     private int roleID;
     private String roleCode;
     private String roleLabel;
@@ -38,4 +39,8 @@ public class Role {
         this.roleLabel = roleLabel;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Role{id:%d label:%s}", roleID, roleLabel);
+    }
 }

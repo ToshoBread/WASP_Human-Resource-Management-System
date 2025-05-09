@@ -1,6 +1,7 @@
 package wasp.DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -142,14 +143,18 @@ public class EmployeeDAO extends DAO<Employee> {
                 String firstName = result.getString("firstName");
                 String username = result.getString("username");
                 String email = result.getString("email");
+                Date birthdate = result.getDate("birthDate");
                 int sexID = result.getInt("sexID");
+                int roleID = result.getInt("roleID");
 
                 employee.setEmployeeID(employeeID);
                 employee.setLastName(lastName);
                 employee.setFirstName(firstName);
                 employee.setUsername(username);
                 employee.setEmail(email);
+                employee.setBirthdate(birthdate);
                 employee.setSexID(sexID);
+                employee.setRoleID(roleID);
 
                 employees.add(employee);
             }

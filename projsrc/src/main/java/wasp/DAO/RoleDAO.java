@@ -44,7 +44,7 @@ public class RoleDAO extends DAO<Role> {
     @Override
     public List<Role> getAll() throws SQLException {
         List<Role> roleList = new ArrayList<>();
-        String sql = "SELECT * FROM sexList";
+        String sql = "SELECT * FROM roleList";
 
         try (Connection conn = DatabaseConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql);
