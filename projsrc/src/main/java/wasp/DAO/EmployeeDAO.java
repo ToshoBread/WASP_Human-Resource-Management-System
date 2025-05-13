@@ -32,6 +32,7 @@ public class EmployeeDAO extends DAO<Employee> {
                     employee.setFirstName(result.getString("firstName"));
                     employee.setUsername(result.getString("username"));
                     employee.setEmail(result.getString("email"));
+                    employee.setBirthdate(result.getDate("birthDate"));
                     employee.setSexID(result.getInt("sexID"));
                     employee.setRoleID(result.getInt("roleID"));
                     employee.setPassword(result.getString("passwordHash"));
@@ -61,6 +62,7 @@ public class EmployeeDAO extends DAO<Employee> {
                     employee.setFirstName(result.getString("firstName"));
                     employee.setUsername(result.getString("username"));
                     employee.setEmail(result.getString("email"));
+                    employee.setBirthdate(result.getDate("birthDate"));
                     employee.setSexID(result.getInt("sexID"));
                     employee.setRoleID(result.getInt("roleID"));
                     employee.setPassword(result.getString("passwordHash"));
@@ -90,6 +92,7 @@ public class EmployeeDAO extends DAO<Employee> {
                     employee.setFirstName(result.getString("firstName"));
                     employee.setUsername(result.getString("username"));
                     employee.setEmail(result.getString("email"));
+                    employee.setBirthdate(result.getDate("birthDate"));
                     employee.setSexID(result.getInt("sexID"));
                     employee.setRoleID(result.getInt("roleID"));
                     employee.setPassword(result.getString("passwordHash"));
@@ -118,6 +121,7 @@ public class EmployeeDAO extends DAO<Employee> {
                 employee.setFirstName(result.getString("firstName"));
                 employee.setUsername(result.getString("username"));
                 employee.setEmail(result.getString("email"));
+                employee.setBirthdate(result.getDate("birthDate"));
                 employee.setSexID(result.getInt("sexID"));
                 employee.setRoleID(result.getInt("roleID"));
                 employee.setPassword(result.getString("passwordHash"));

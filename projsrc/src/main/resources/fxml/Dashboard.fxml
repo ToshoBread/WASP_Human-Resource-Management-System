@@ -16,7 +16,7 @@
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #123458;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="60.0" prefWidth="622.0" style="-fx-font-size: 25; -fx-text-fill: white; -fx-font-weight: bold;" text="W.A.S.P inc.">
+            <Label prefHeight="60.0" prefWidth="728.0" style="-fx-font-size: 25; -fx-text-fill: white; -fx-font-weight: bold;" text="W.A.S.P inc.">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -28,8 +28,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0" />
-                  <Button cache="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Edit Mode" textFill="WHITE" />
                   <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0" />
                   <Button fx:id="logoutBtn" cache="true" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Logout" textFill="WHITE">
                      <cursor>
@@ -69,6 +67,7 @@
                            </cursor></TextField>
                      </children>
                   </HBox>
+                  <Button fx:id="addEmployeeBtn" mnemonicParsing="false" onAction="#gotoRegister" text="Add Employee" />
                </children>
                <VBox.margin>
                   <Insets bottom="-50.0" />

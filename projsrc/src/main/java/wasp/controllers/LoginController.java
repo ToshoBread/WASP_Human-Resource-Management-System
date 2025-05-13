@@ -80,14 +80,4 @@ public class LoginController {
         loginMessage.setText(message);
         loginMessage.setVisible(true);
     }
-
-    public void gotoRegister(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Registerpage.fxml"));
-        root = loader.load();
-
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
 }

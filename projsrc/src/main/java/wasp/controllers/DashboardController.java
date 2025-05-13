@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -101,8 +102,6 @@ public class DashboardController implements Initializable {
             emailColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("email"));
             birthdateColumn.setCellValueFactory(new PropertyValueFactory<Employee, Date>("birthdate"));
 
-            // TODO: display formatted version of birthdate along with dynamic search
-
             sexColumn.setCellValueFactory(cellData -> {
                 Employee employee = cellData.getValue();
                 Sex sex = sexMap.get(employee.getSexID());
@@ -115,6 +114,18 @@ public class DashboardController implements Initializable {
                 Role role = roleMap.get(employee.getRoleID());
                 String label = role != null ? role.getRoleCode() : "Null";
                 return new SimpleStringProperty(label);
+            });
+
+            employeeTable.setRowFactory(tableView -> {
+                TableRow<Employee> row = new TableRow<>();
+
+                row.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 2 && !row.isEmpty()) {
+                        Employee selectedEmployee = row.getItem();
+                        viewEmployeeData(selectedEmployee);
+                    }
+                });
+                return row;
             });
 
             displayTableData();
@@ -146,7 +157,7 @@ public class DashboardController implements Initializable {
                 }
 
                 Sex sex = sexMap.get(employee.getSexID());
-                if (sex != null && sex.getSexLabel().toLowerCase().contains(lowercaseFilter)) {
+                if (sex != null && sex.getSexLabel().contains(newValue.trim())) {
                     return true;
                 }
 
@@ -163,6 +174,33 @@ public class DashboardController implements Initializable {
         sortedData.comparatorProperty().bind(employeeTable.comparatorProperty());
 
         employeeTable.setItems(sortedData);
+    }
+
+    public void viewEmployeeData(Employee employee) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ViewEmployee.fxml"));
+            root = loader.load();
+
+            ViewEmployeeController controller = loader.getController();
+            controller.setEmployee(employee);
+
+            stage = (Stage) employeeTable.getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void gotoRegister(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Register.fxml"));
+        root = loader.load();
+
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void gotoProfile(ActionEvent event) {

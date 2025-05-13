@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wasp.controllers.LoginController">
    <top>
@@ -31,7 +30,7 @@
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="250.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="400.0">
+            <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="212.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="400.0">
                <effect>
                   <DropShadow height="5.0" offsetY="1.0" radius="2.0" width="5.0">
                      <color>
@@ -66,16 +65,8 @@
                   <Button fx:id="loginButton" defaultButton="true" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#login" prefWidth="350.0" style="-fx-font-size: 15; -fx-background-radius: 10; -fx-font-weight: bold; -fx-background-color: #123458;" text="Login" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <HBox alignment="CENTER" prefHeight="22.0" prefWidth="978.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" />
-                        <Button fx:id="gotoRegisterButton" maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" onAction="#gotoRegister" prefHeight="24.0" style="-fx-background-color: none;" text="Register here" textFill="#4430fc">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></Button>
-                     </children>
-                  </HBox>
+                     </cursor>
+                  </Button>
                </children>
             </VBox>
          </children>
