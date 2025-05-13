@@ -32,21 +32,16 @@ public class EmployeeService {
 
     public boolean usernameExists(String username) throws SQLException {
         Employee employee = empDAO.getByUsername(username);
-
-        if (employee.getUsername() != null) {
-            return true;
-        }
-
-        return false;
+        return employee.getUsername() != null;
     }
 
     public boolean emailIsUsed(String email) throws SQLException {
         Employee employee = empDAO.getByEmail(email);
+        return employee.getEmail() != null;
+    }
 
-        if (employee.getEmail() != null) {
-            return true;
-        }
-
-        return false;
+    public boolean verifyEmail(String email) {
+        String emailRegex = "^[a-z0-9_+&*-]+(?:\\.[a-z0-9_+&*-]+)*@(?:[a-z0-9_+&*-]+\\.)*[a-z]{2,7}$";
+        return email.matches(emailRegex);
     }
 }

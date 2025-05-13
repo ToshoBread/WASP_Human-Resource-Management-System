@@ -3,9 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -25,7 +27,18 @@
             </Label>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="dashboardBtn" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#gotoDashboard" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Dashboard" textFill="WHITE">
+                  <Button fx:id="viewBtn" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#toggleMode" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="View Mode" textFill="WHITE" visible="false">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="editBtn" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#toggleMode" prefHeight="30.0" prefWidth="133.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Edit Mode" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Rectangle fx:id="separator1" arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0" />
+                  <Button fx:id="dashboardBtn" alignment="CENTER" cache="true" mnemonicParsing="false" onAction="#gotoDashboard" prefHeight="30.0" prefWidth="137.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Dashboard" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -63,21 +76,54 @@
       </StackPane>
    </left>
    <center>
-      <VBox prefHeight="572.0" prefWidth="513.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER_LEFT" prefHeight="572.0" prefWidth="513.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="empID" style="-fx-font-size: 16; -fx-font-weight: bold;" text="ID:" />
-            <Label fx:id="empName" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Name: " />
-            <Label fx:id="empSex" scaleZ="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Sex:" />
-            <Label fx:id="empBirthdate" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Birthdate:" />
-            <Label fx:id="empEmail" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Email: " />
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Name: " />
+                  <Label fx:id="empName" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Employee Name" />
+                  <TextField fx:id="lnameField" promptText="Last Name" visible="false" />
+                  <TextField fx:id="fnameField" promptText="First Name" visible="false" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_LEFT" spacing="10.0">
+               <children>
+                  <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Sex:" />
+                  <Label fx:id="empSex" scaleZ="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Employee Sex" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Birthdate:" />
+                  <Label fx:id="empBirthdate" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Employee Birthdate" />
+                  <DatePicker fx:id="birthdateField" prefHeight="26.0" prefWidth="263.0" promptText="Birthdate (MM/DD/YYYY)" visible="false" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+               <children>
+                  <Label style="-fx-font-size: 16; -fx-font-weight: bold;" text="Email: " />
+                  <Label fx:id="empEmail" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Employee Email" />
+                  <TextField fx:id="emailField" prefHeight="26.0" prefWidth="310.0" promptText="Email" visible="false" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#saveChanges" text="Save" textAlignment="CENTER" />
+                  <Label fx:id="editMessage" style="-fx-font-size: 16; -fx-font-weight: bold;" textFill="RED" />
+               </children>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
       </VBox>
    </center>
    <right>
-      <VBox prefHeight="572.0" prefWidth="382.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="572.0" prefWidth="382.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="empDept" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Department:" />
             <Label fx:id="empPosition" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Position:" />
@@ -89,6 +135,9 @@
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
       </VBox>
    </right>
    <bottom>

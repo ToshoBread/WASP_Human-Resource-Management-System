@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import wasp.DAO.EmployeeDAO;
 import wasp.DTO.Employee;
 import wasp.services.EmployeeService;
+import wasp.singleton.LoggedInUser;
 import wasp.util.Encryptor;
 import wasp.util.Utils;
 
@@ -68,8 +69,6 @@ public class RegisterController {
             int sexID = 0;
             int roleID = 0;
 
-            String emailRegex = "^[a-z0-9_+&*-]+(?:\\.[a-z0-9_+&*-]+)*@(?:[a-z0-9_+&*-]+\\.)*[a-z]{2,7}$";
-
             if (radioMale.isSelected()) {
                 sexID = 1;
             } else if (radioFemale.isSelected()) {
@@ -107,7 +106,7 @@ public class RegisterController {
                 return;
             }
 
-            if (!email.matches(emailRegex)) {
+            if (!empService.verifyEmail(email)) {
                 showRegisterMessage("Invalid Email.");
                 return;
             }
@@ -156,6 +155,39 @@ public class RegisterController {
     private void showRegisterMessage(String message) {
         registerMessage.setText(message);
         registerMessage.setVisible(true);
+    }
+
+    public void gotoDashboard(ActionEvent event) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Dashboard.fxml"));
+            root = loader.load();
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void logout(ActionEvent event) throws IOException {
+        LoggedInUser loggedInUser = LoggedInUser.getInstance();
+
+        try {
+            loggedInUser.clearUser();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+            root = loader.load();
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
