@@ -47,7 +47,7 @@ CREATE TABLE JobHistory (
     position VARCHAR(50),
     department VARCHAR(50),
     employDate DATE,
-    resignDate DATE,
+    separationDate DATE,
     effectivityDate DATE,
     FOREIGN KEY (employeeID) REFERENCES EmployeeInfo(employeeID) ON DELETE CASCADE
 );
@@ -83,6 +83,6 @@ INSERT INTO RoleList (roleID, roleCode, roleLabel)
 VALUES
 (1, 'EMP', 'Employee'),
 (2, 'SPV', 'Supervisor'),
-(3, 'HRA', 'HR Admin'),
-(4, 'ITA', 'IT Admin');
+(3, 'HR', 'HR Admin'),
+(4, 'IT', 'IT Admin');
 

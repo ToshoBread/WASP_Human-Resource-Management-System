@@ -15,7 +15,7 @@ public class App extends Application {
         stage.getIcons().add(icon);
         stage.setTitle("W.A.S.P. H.R.M.S.");
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/ChooseRole.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         Scene scene = new Scene(root);
 
         stage.setScene(scene);

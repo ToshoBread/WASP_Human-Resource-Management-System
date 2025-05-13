@@ -34,8 +34,6 @@ public class RoleDAO extends DAO<Role> {
                 role.setRoleCode(storedRoleCode);
                 role.setRoleLabel(storedRoleLabel);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return role;
@@ -62,9 +60,6 @@ public class RoleDAO extends DAO<Role> {
 
                 roleList.add(role);
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return roleList;

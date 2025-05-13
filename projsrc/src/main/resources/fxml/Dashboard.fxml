@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="978.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wasp.controllers.DashboardController">
+   <top>
+      <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="600.0" style="-fx-background-color: #123458;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="60.0" prefWidth="622.0" style="-fx-font-size: 25; -fx-text-fill: white; -fx-font-weight: bold;" text="W.A.S.P inc.">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </Label>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="profileBtn" cache="true" mnemonicParsing="false" onAction="#gotoProfile" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Profile" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0" />
+                  <Button cache="true" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Edit Mode" textFill="WHITE" />
+                  <Rectangle arcHeight="1.0" arcWidth="1.0" fill="WHITE" height="30.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1.0" />
+                  <Button fx:id="logoutBtn" cache="true" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #123458; -fx-font-size: 13; -fx-font-weight: bold;" text="Logout" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="367.0" prefWidth="656.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="userDashboardLabel" style="-fx-font-size: 40; -fx-font-weight: bold;" text="Dashboard">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="978.0" spacing="50.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-font-size: 15; -fx-font-weight: bold;" text="Employee Table">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label alignment="CENTER" text="Search">
+                           <HBox.margin>
+                              <Insets bottom="4.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="tableSearchField" prefHeight="26.0" prefWidth="181.0">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor></TextField>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="-50.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <TableView fx:id="employeeTable" prefHeight="443.0" prefWidth="978.0" BorderPane.alignment="CENTER">
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="48.00000077486038" text="ID" />
+            <TableColumn fx:id="lastnameColumn" prefWidth="134.3999900817871" text="Last Name" />
+            <TableColumn fx:id="firstnameColumn" prefWidth="146.40003967285156" text="First Name" />
+            <TableColumn fx:id="positionColumn" prefWidth="58.4000244140625" text="Position" />
+            <TableColumn fx:id="emailColumn" minWidth="0.0" prefWidth="313.5999755859375" text="Email" />
+            <TableColumn fx:id="sexColumn" prefWidth="61.59991455078125" text="Sex" />
+            <TableColumn fx:id="birthdateColumn" prefWidth="208.800048828125" text="Birthdate" />
+         </columns>
+      </TableView>
+   </bottom>
+</BorderPane>

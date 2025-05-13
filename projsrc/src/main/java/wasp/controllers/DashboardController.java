@@ -37,7 +37,7 @@ import wasp.DTO.Sex;
 import wasp.DTO.Role;
 import wasp.singleton.LoggedInUser;
 
-public class AdminDashboardController implements Initializable {
+public class DashboardController implements Initializable {
 
     @FXML
     private Button logoutBtn;
@@ -101,6 +101,8 @@ public class AdminDashboardController implements Initializable {
             emailColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("email"));
             birthdateColumn.setCellValueFactory(new PropertyValueFactory<Employee, Date>("birthdate"));
 
+            // TODO: display formatted version of birthdate along with dynamic search
+
             sexColumn.setCellValueFactory(cellData -> {
                 Employee employee = cellData.getValue();
                 Sex sex = sexMap.get(employee.getSexID());
@@ -111,29 +113,11 @@ public class AdminDashboardController implements Initializable {
             positionColumn.setCellValueFactory(cellData -> {
                 Employee employee = cellData.getValue();
                 Role role = roleMap.get(employee.getRoleID());
-                String label = role != null ? role.getRoleLabel() : "Null";
+                String label = role != null ? role.getRoleCode() : "Null";
                 return new SimpleStringProperty(label);
             });
 
             displayTableData();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void logout(ActionEvent event) throws IOException {
-        LoggedInUser loggedInUser = LoggedInUser.getInstance();
-
-        try {
-            loggedInUser.clearUser();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseRole.fxml"));
-            root = loader.load();
-
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -179,5 +163,37 @@ public class AdminDashboardController implements Initializable {
         sortedData.comparatorProperty().bind(employeeTable.comparatorProperty());
 
         employeeTable.setItems(sortedData);
+    }
+
+    public void gotoProfile(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Profile.fxml"));
+            root = loader.load();
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void logout(ActionEvent event) throws IOException {
+        LoggedInUser loggedInUser = LoggedInUser.getInstance();
+
+        try {
+            loggedInUser.clearUser();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+            root = loader.load();
+
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

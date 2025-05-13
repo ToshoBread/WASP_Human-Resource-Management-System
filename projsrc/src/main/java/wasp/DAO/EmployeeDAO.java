@@ -27,25 +27,15 @@ public class EmployeeDAO extends DAO<Employee> {
             try (ResultSet result = stmt.executeQuery();) {
 
                 if (result.next()) {
-                    int storedEmployeeID = result.getInt("employeeID");
-                    String storedLastName = result.getString("lastName");
-                    String storedFirstName = result.getString("firstName");
-                    String storedUsername = result.getString("username");
-                    String storedEmail = result.getString("email");
-                    int storedSexID = result.getInt("sexID");
-                    int storedRoleID = result.getInt("roleID");
-                    String storedPasswordHash = result.getString("passwordHash");
-                    String storedSalt = result.getString("salt");
-
-                    employee.setEmployeeID(storedEmployeeID);
-                    employee.setLastName(storedLastName);
-                    employee.setFirstName(storedFirstName);
-                    employee.setUsername(storedUsername);
-                    employee.setEmail(storedEmail);
-                    employee.setSexID(storedSexID);
-                    employee.setRoleID(storedRoleID);
-                    employee.setPassword(storedPasswordHash);
-                    employee.setSalt(storedSalt);
+                    employee.setEmployeeID(result.getInt("employeeID"));
+                    employee.setLastName(result.getString("lastName"));
+                    employee.setFirstName(result.getString("firstName"));
+                    employee.setUsername(result.getString("username"));
+                    employee.setEmail(result.getString("email"));
+                    employee.setSexID(result.getInt("sexID"));
+                    employee.setRoleID(result.getInt("roleID"));
+                    employee.setPassword(result.getString("passwordHash"));
+                    employee.setSalt(result.getString("salt"));
                 }
             }
         }
@@ -66,25 +56,15 @@ public class EmployeeDAO extends DAO<Employee> {
             try (ResultSet result = stmt.executeQuery();) {
 
                 if (result.next()) {
-                    int storedEmployeeID = result.getInt("employeeID");
-                    String storedLastName = result.getString("lastName");
-                    String storedFirstName = result.getString("firstName");
-                    String storedUsername = result.getString("username");
-                    String storedEmail = result.getString("email");
-                    int storedSexID = result.getInt("sexID");
-                    int storedRoleID = result.getInt("roleID");
-                    String storedPasswordHash = result.getString("passwordHash");
-                    String storedSalt = result.getString("salt");
-
-                    employee.setEmployeeID(storedEmployeeID);
-                    employee.setLastName(storedLastName);
-                    employee.setFirstName(storedFirstName);
-                    employee.setUsername(storedUsername);
-                    employee.setEmail(storedEmail);
-                    employee.setSexID(storedSexID);
-                    employee.setRoleID(storedRoleID);
-                    employee.setPassword(storedPasswordHash);
-                    employee.setSalt(storedSalt);
+                    employee.setEmployeeID(result.getInt("employeeID"));
+                    employee.setLastName(result.getString("lastName"));
+                    employee.setFirstName(result.getString("firstName"));
+                    employee.setUsername(result.getString("username"));
+                    employee.setEmail(result.getString("email"));
+                    employee.setSexID(result.getInt("sexID"));
+                    employee.setRoleID(result.getInt("roleID"));
+                    employee.setPassword(result.getString("passwordHash"));
+                    employee.setSalt(result.getString("salt"));
                 }
             }
         }
@@ -105,19 +85,15 @@ public class EmployeeDAO extends DAO<Employee> {
             try (ResultSet result = stmt.executeQuery();) {
 
                 if (result.next()) {
-                    int employeeID = result.getInt("employeeID");
-                    String lastName = result.getString("lastName");
-                    String firstName = result.getString("firstName");
-                    String username = result.getString("username");
-                    String storedEmail = result.getString("email");
-                    int sexID = result.getInt("sexID");
-
-                    employee.setEmployeeID(employeeID);
-                    employee.setLastName(lastName);
-                    employee.setFirstName(firstName);
-                    employee.setUsername(username);
-                    employee.setEmail(storedEmail);
-                    employee.setSexID(sexID);
+                    employee.setEmployeeID(result.getInt("employeeID"));
+                    employee.setLastName(result.getString("lastName"));
+                    employee.setFirstName(result.getString("firstName"));
+                    employee.setUsername(result.getString("username"));
+                    employee.setEmail(result.getString("email"));
+                    employee.setSexID(result.getInt("sexID"));
+                    employee.setRoleID(result.getInt("roleID"));
+                    employee.setPassword(result.getString("passwordHash"));
+                    employee.setSalt(result.getString("salt"));
                 }
             }
         }
@@ -137,24 +113,15 @@ public class EmployeeDAO extends DAO<Employee> {
 
             while (result.next()) {
                 Employee employee = new Employee();
-
-                int employeeID = result.getInt("employeeID");
-                String lastName = result.getString("lastName");
-                String firstName = result.getString("firstName");
-                String username = result.getString("username");
-                String email = result.getString("email");
-                Date birthdate = result.getDate("birthDate");
-                int sexID = result.getInt("sexID");
-                int roleID = result.getInt("roleID");
-
-                employee.setEmployeeID(employeeID);
-                employee.setLastName(lastName);
-                employee.setFirstName(firstName);
-                employee.setUsername(username);
-                employee.setEmail(email);
-                employee.setBirthdate(birthdate);
-                employee.setSexID(sexID);
-                employee.setRoleID(roleID);
+                employee.setEmployeeID(result.getInt("employeeID"));
+                employee.setLastName(result.getString("lastName"));
+                employee.setFirstName(result.getString("firstName"));
+                employee.setUsername(result.getString("username"));
+                employee.setEmail(result.getString("email"));
+                employee.setSexID(result.getInt("sexID"));
+                employee.setRoleID(result.getInt("roleID"));
+                employee.setPassword(result.getString("passwordHash"));
+                employee.setSalt(result.getString("salt"));
 
                 employees.add(employee);
             }

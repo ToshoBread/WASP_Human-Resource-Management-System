@@ -19,10 +19,10 @@ public class SexDAO extends DAO<Sex> {
 
         try (
                 Connection conn = DatabaseConnection.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(sql);
-                ResultSet result = stmt.executeQuery();) {
+                PreparedStatement stmt = conn.prepareStatement(sql);) {
 
             stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
 
             if (result.next()) {
                 int storedSexID = result.getInt("sexID");
@@ -33,8 +33,8 @@ public class SexDAO extends DAO<Sex> {
                 sex.setSexCode(storedSexCode);
                 sex.setSexLabel(storedSexLabel);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+
+            result.close();
         }
 
         return sex;
@@ -61,9 +61,6 @@ public class SexDAO extends DAO<Sex> {
 
                 sexList.add(sex);
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return sexList;
